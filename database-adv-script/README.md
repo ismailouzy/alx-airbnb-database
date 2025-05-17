@@ -2,7 +2,7 @@
 
 ## 📁 Directory: database-adv-script
 
-This directory focuses on mastering SQL JOINs by writing advanced queries involving different types of joins.
+This directory focuses on mastering SQL JOINs and subqueries by writing advanced queries.
 
 ## 📄 File: joins_queries.sql
 
@@ -38,7 +38,25 @@ FROM User u
 FULL OUTER JOIN Booking b ON u.user_id = b.user_id;
 ```
 
-## ✅ How to Use
+## 📄 File: subqueries.sql
+
+This SQL script demonstrates:
+
+### Non-Correlated Subquery
+
+Finds all properties where the average rating is greater than 4.0.
+
+```sql
+SELECT ... FROM Property p WHERE ( SELECT AVG(r.rating) FROM Review r WHERE r.property_id = p.property_id ) > 4.0;
+```
+
+### Correlated Subquery
+
+Retrieves users who have made more than 3 bookings.
+
+```sql
+SELECT ... FROM User u WHERE ( SELECT COUNT(*) FROM Booking b WHERE b.user_id = u.user_id ) > 3;
+```
 
 1. Ensure your PostgreSQL schema is created (`schema.sql`)
 2. Optionally seed data using `seed.sql`
